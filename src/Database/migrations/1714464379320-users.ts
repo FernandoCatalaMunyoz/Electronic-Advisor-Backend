@@ -51,11 +51,6 @@ export class Users1714464379320 implements MigrationInterface {
             onUpdate: "now()",
           },
           {
-            name: "is_active",
-            type: "boolean",
-            default: true,
-          },
-          {
             name: "role_id",
             type: "int",
             isNullable: true,
