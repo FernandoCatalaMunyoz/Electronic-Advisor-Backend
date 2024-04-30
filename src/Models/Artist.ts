@@ -2,23 +2,20 @@ import {
   BaseEntity,
   Column,
   Entity,
+  ManyToOne,
+  JoinColumn,
   PrimaryGeneratedColumn,
-  OneToMany,
 } from "typeorm";
-import { Event } from "./Event";
 
-@Entity("clubs")
-export class Club extends BaseEntity {
+@Entity("events")
+export class Event extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column({ name: "name" })
-  firstName!: string;
+  name!: string;
 
-  @Column({ name: "adress" })
-  lastName!: string;
-
-  @Column({ name: "link" })
+  @Column({ name: "country" })
   country!: string;
 
   @Column({ name: "created_at" })
@@ -26,7 +23,4 @@ export class Club extends BaseEntity {
 
   @Column({ name: "updated_at" })
   updatedAt!: Date;
-
-  @OneToMany(() => Event, (event) => event.club)
-  events!: Event[];
 }
