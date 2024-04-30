@@ -8,6 +8,9 @@ import { Events1714468693188 } from "./migrations/1714468693188-events";
 import { Genres1714470649833 } from "./migrations/1714470649833-genres";
 import { Artists1714471089038 } from "./migrations/1714471089038-artists";
 import { ArtistEvent1714472684434 } from "./migrations/1714472684434-artist-event";
+import { Role } from "../Models/Role";
+import { User } from "../Models/User";
+import { Club } from "../Models/Club";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -16,7 +19,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE || "test",
-  entities: [],
+  entities: [Role, User, Club, Event],
   migrations: [
     Roles1714464357650,
     Users1714464379320,

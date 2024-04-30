@@ -1,5 +1,11 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  OneToMany,
+} from "typeorm";
+import { Event } from "./Event";
 @Entity("clubs")
 export class Club extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -19,4 +25,7 @@ export class Club extends BaseEntity {
 
   @Column({ name: "updated_at" })
   updatedAt!: Date;
+
+  @OneToMany(() => Event, (event) => event.club)
+  events!: Event[];
 }
