@@ -14,4 +14,6 @@ app.use("/api/healthy", (req, res) => {
   });
 });
 
+//RUTAS
+
 export default app;
