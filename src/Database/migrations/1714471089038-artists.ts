@@ -1,10 +1,10 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class Genres1714470649833 implements MigrationInterface {
+export class Artists1714471089038 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "genres",
+        name: "artists",
         columns: [
           {
             name: "id",
@@ -19,6 +19,15 @@ export class Genres1714470649833 implements MigrationInterface {
             length: "50",
           },
           {
+            name: "country",
+            type: "varchar",
+            length: "50",
+          },
+          {
+            name: "genre_id",
+            type: "int",
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
@@ -30,12 +39,20 @@ export class Genres1714470649833 implements MigrationInterface {
             onUpdate: "now()",
           },
         ],
+        foreignKeys: [
+          {
+            columnNames: ["genre_id"],
+            referencedTableName: "genres",
+            referencedColumnNames: ["id"],
+            onUpdate: "CASCADE",
+          },
+        ],
       }),
       true
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable("genres");
+    await queryRunner.dropTable("artists");
   }
 }
