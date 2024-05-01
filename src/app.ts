@@ -4,7 +4,12 @@ dotenv.config();
 import cors from "cors";
 import { login, register } from "./Controllers/authController";
 import { auth } from "./Middlewares/auth";
-import { getProfile } from "./Controllers/userController";
+import {
+  getProfile,
+  getUsers,
+  updateProfile,
+} from "./Controllers/userController";
+import { isSuperAdmin } from "./Middlewares/isSuperAdmin";
 
 const app: Application = express();
 
@@ -28,4 +33,6 @@ app.post("/api/auth/login", login);
 //Rutas User
 
 app.get("/api/user/profile", auth, getProfile);
+app.put("/api/user/profile", auth, updateProfile);
+app.get("/api/user", auth, isSuperAdmin, getUsers);
 export default app;
