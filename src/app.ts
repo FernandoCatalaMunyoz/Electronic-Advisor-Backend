@@ -2,6 +2,8 @@ import express, { Application } from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
+import { register } from "./Controllers/authController";
+
 const app: Application = express();
 
 app.use(express.json());
@@ -15,5 +17,7 @@ app.use("/api/healthy", (req, res) => {
 });
 
 //RUTAS
+//Rutas autenticacion
 
+app.post("/api/auth/register", register);
 export default app;
