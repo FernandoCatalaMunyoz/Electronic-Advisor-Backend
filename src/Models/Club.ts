@@ -27,6 +27,6 @@ export class Club extends BaseEntity {
   @Column({ name: "updated_at" })
   updatedAt!: Date;
 
-  @OneToMany(() => Event, (event) => event.club)
-  events!: Event[];
+  @OneToMany(() => Event, (events) => events.club)
+  event!: Event[];
 }
