@@ -16,17 +16,17 @@ export class Users1714464379320 implements MigrationInterface {
           {
             name: "firstName",
             type: "varchar",
-            length: "255",
+            length: "100",
           },
           {
             name: "lastName",
             type: "varchar",
-            length: "255",
+            length: "100",
           },
           {
             name: "country",
             type: "varchar",
-            length: "40",
+            length: "100",
           },
           {
             name: "email",
@@ -37,7 +37,7 @@ export class Users1714464379320 implements MigrationInterface {
           {
             name: "password",
             type: "varchar",
-            length: "255",
+            length: "10",
           },
           {
             name: "created_at",

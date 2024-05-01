@@ -5,6 +5,7 @@ import cors from "cors";
 import { login, register } from "./Controllers/authController";
 import { auth } from "./Middlewares/auth";
 import {
+  deleteProfile,
   deleteUserById,
   getProfile,
   getUsers,
@@ -35,6 +36,7 @@ app.post("/api/auth/login", login);
 
 app.get("/api/user/profile", auth, getProfile);
 app.put("/api/user/profile", auth, updateProfile);
+// app.delete("/api/user", deleteProfile);
 app.get("/api/user", auth, isSuperAdmin, getUsers);
 app.delete("/api/user/:id", auth, isSuperAdmin, deleteUserById);
 

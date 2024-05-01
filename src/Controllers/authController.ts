@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { User } from "../Models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { handleError } from "../utils/handleError";
 
 //REGISTER
 
@@ -15,37 +16,34 @@ export const register = async (req: Request, res: Response) => {
       const email = req.body.email;
       const password = req.body.password;
 
-      if (firstName.length > 255) {
-        return res.status(400).json({
-          succes: false,
-          message: "First name must be under 255 characters",
-        });
+      if (!email) {
+        throw new Error("Email required");
       }
-      if (lastName.length > 255) {
-        return res.status(400).json({
-          succes: false,
-          message: "Last name name must be under 255 characters",
-        });
+      const userEmail = await User.findOne({
+        where: {
+          email: email,
+        },
+      });
+
+      if (userEmail) {
+        throw new Error("Email already in use");
       }
-      if (email.length > 255) {
-        return res.status(400).json({
-          succes: false,
-          message: "Email name must be under 255 characters",
-        });
+      if (
+        firstName.length > 100 ||
+        lastName.length > 100 ||
+        email.length > 100 ||
+        country.length > 100
+      ) {
+        throw new Error("This field must be under 255 characters");
       }
+
       const validEmail = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
       if (!validEmail.test(email)) {
-        return res.status(400).json({
-          success: false,
-          message: "format email invalid",
-        });
+        throw new Error("format email invalid");
       }
 
       if (password.length > 10 || password.length < 6) {
-        return res.status(400).json({
-          succes: false,
-          message: "Password has to be between 6 and 10 characters",
-        });
+        throw new Error("Password has to be between 6 and 10 characters");
       }
       const passwordEncrypted = bcrypt.hashSync(password, 8);
 
@@ -64,12 +62,23 @@ export const register = async (req: Request, res: Response) => {
         data: newUser,
       });
     }
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "User cant be register",
-      error: error,
-    });
+  } catch (error: any) {
+    if (error.message === "Email already in use") {
+      return handleError(res, error.message, 400);
+    }
+    if (error.message === "This field must be under 255 characters") {
+      return handleError(res, error.message, 400);
+    }
+    if (error.message === "format email invalid") {
+      return handleError(res, error.message, 400);
+    }
+    if (error.message === "Password has to be between 6 and 10 characters") {
+      return handleError(res, error.message, 400);
+    }
+    if (error.message === "Email required") {
+      return handleError(res, error.message, 400);
+    }
+    handleError(res, "You cant register", 500);
   }
 };
 

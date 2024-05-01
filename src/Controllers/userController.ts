@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "../Models/User";
+import { handleError } from "../utils/handleError";
 
 //VER PERFIL DE USUARIO
 
@@ -66,18 +67,15 @@ export const updateProfile = async (req: Request, res: Response) => {
       }
     }
 
-    // const userEmail = await User.findOne({
-    //   where: {
-    //     email: email,
-    //   },
-    // });
+    const userEmail = await User.findOne({
+      where: {
+        email: email,
+      },
+    });
 
-    // if (userEmail) {
-    //   return res.status(400).json({
-    //     succes: false,
-    //     message: "this email is not available",
-    //   });
-    // }
+    if (userEmail) {
+      throw new Error("Email already in use");
+    }
 
     const userUpdated = await User.update(
       {
@@ -99,12 +97,11 @@ export const updateProfile = async (req: Request, res: Response) => {
       data: userUpdated,
     });
     console.log(userUpdated, "usuario actualizado");
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "User cant be update",
-      error: error,
-    });
+  } catch (error: any) {
+    if (error.message === "Email already in use") {
+      return handleError(res, error.message, 404);
+    }
+    handleError(res, "Cant update users", 500);
   }
 };
 //FUNCION PARA TRAER TODOS LOS USUARIOS
@@ -179,6 +176,38 @@ export const deleteUserById = async (req: Request, res: Response) => {
     res.status(500).json({
       succes: true,
       message: "User cant be deleted",
+    });
+  }
+};
+//FUNCION BORRAR PERFIL
+
+export const deleteProfile = async (req: Request, res: Response) => {
+  try {
+    const userId = req.tokenData.userId;
+    console.log(userId, "userId");
+
+    const userToRemove: any = await User.findOneBy({
+      id: userId,
+    });
+    console.log(userToRemove);
+
+    if (!userToRemove) {
+      res.status(404).json({
+        succes: false,
+        message: "user not found",
+      });
+    }
+
+    await User.remove(userToRemove);
+
+    res.status(201).json({
+      succes: true,
+      message: "Profile deleted",
+    });
+  } catch (error) {
+    res.status(500).json({
+      succes: true,
+      message: "Profile cant be deleted",
     });
   }
 };
