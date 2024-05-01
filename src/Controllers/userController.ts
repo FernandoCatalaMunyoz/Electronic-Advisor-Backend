@@ -120,3 +120,40 @@ export const getUsers = async (req: Request, res: Response) => {
     });
   }
 };
+
+//FUNCION BORRAR USUARIO POR ID
+
+export const deleteUserById = async (req: Request, res: Response) => {
+  try {
+    const userId = req.params.id;
+
+    const userToRemove: any = await User.findOneBy({
+      id: parseInt(userId),
+    });
+    console.log(userToRemove);
+    if (userToRemove.roleName === "super_admin") {
+      res.status(400).json({
+        succes: false,
+        message: "super_admin cant be deleted",
+      });
+    }
+    if (!userToRemove) {
+      res.status(404).json({
+        succes: false,
+        message: "user not found",
+      });
+    }
+
+    await User.remove(userToRemove);
+
+    res.status(201).json({
+      succes: true,
+      message: "User deleted",
+    });
+  } catch (error) {
+    res.status(500).json({
+      succes: true,
+      message: "User cant be deleted",
+    });
+  }
+};
