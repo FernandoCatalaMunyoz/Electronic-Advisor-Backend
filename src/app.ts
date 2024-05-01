@@ -2,7 +2,7 @@ import express, { Application } from "express";
 import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
-import { register } from "./Controllers/authController";
+import { login, register } from "./Controllers/authController";
 
 const app: Application = express();
 
@@ -20,4 +20,5 @@ app.use("/api/healthy", (req, res) => {
 //Rutas autenticacion
 
 app.post("/api/auth/register", register);
+app.post("/api/auth/login", login);
 export default app;
