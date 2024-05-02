@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { User } from "../Models/User";
 import { handleError } from "../utils/handleError";
+import { id_ID } from "@faker-js/faker";
 
 //VER PERFIL DE USUARIO
 
@@ -81,6 +82,7 @@ export const updateProfile = async (req: Request, res: Response) => {
       {
         id: userId,
       },
+
       {
         firstName: firstName,
         lastName: lastName,
@@ -92,6 +94,7 @@ export const updateProfile = async (req: Request, res: Response) => {
       where: {
         id: userId,
       },
+      relations: { role: true },
     });
 
     res.status(201).json({
