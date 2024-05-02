@@ -5,12 +5,15 @@ import { TokenData } from "../Types/index";
 export const auth = (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
+    console.log(token, "token");
     if (!token) {
+      console.log("dani");
       return res.status(401).json({
         succes: false,
         message: "UNAUTHORIZE",
       });
     }
+    console.log("adios");
     jwt.verify(token, process.env.JWT_SECRET as string);
     const decodedToken = jwt.decode(token);
     req.tokenData = decodedToken as TokenData;

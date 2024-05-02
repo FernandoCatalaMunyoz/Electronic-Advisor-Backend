@@ -36,7 +36,7 @@ app.post("/api/auth/login", login);
 
 app.get("/api/user/profile", auth, getProfile);
 app.put("/api/user/profile", auth, updateProfile);
-// app.delete("/api/user", deleteProfile);
+app.delete("/api/user", auth, deleteProfile);
 app.get("/api/user", auth, isSuperAdmin, getUsers);
 app.delete("/api/user/:id", auth, isSuperAdmin, deleteUserById);
 

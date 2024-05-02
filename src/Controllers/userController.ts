@@ -88,13 +88,16 @@ export const updateProfile = async (req: Request, res: Response) => {
         email: email,
       }
     );
-
-    console.log(userUpdated, "data");
+    const userEmailUpdated = await User.findOne({
+      where: {
+        id: userId,
+      },
+    });
 
     res.status(201).json({
       success: true,
       message: "User updated",
-      data: userUpdated,
+      data: userEmailUpdated,
     });
     console.log(userUpdated, "usuario actualizado");
   } catch (error: any) {
@@ -183,6 +186,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
 
 export const deleteProfile = async (req: Request, res: Response) => {
   try {
+    console.log("delete profile");
     const userId = req.tokenData.userId;
     console.log(userId, "userId");
 
