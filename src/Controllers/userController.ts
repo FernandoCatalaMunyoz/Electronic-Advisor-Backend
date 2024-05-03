@@ -171,7 +171,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
     });
   } catch (error) {
     res.status(500).json({
-      succes: true,
+      succes: false,
       message: "User cant be deleted",
     });
   }

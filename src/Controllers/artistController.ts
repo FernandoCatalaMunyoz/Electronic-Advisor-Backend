@@ -3,6 +3,7 @@
 import { Request, Response } from "express";
 import { Artist } from "../Models/Artist";
 import { tr } from "@faker-js/faker";
+import { parse } from "path";
 
 export const createArtist = async (req: Request, res: Response) => {
   try {
@@ -34,11 +35,11 @@ export const updateArtist = async (req: Request, res: Response) => {
     const name = req.body.name;
     const country = req.body.country;
     const genreId = req.body.genre;
-    const artistId = req.body.id;
+    const artistId = req.params.id;
 
     const artist = await Artist.findOne({
       where: {
-        id: artistId,
+        id: parseInt(artistId),
       },
     });
     if (!artist) {
@@ -50,7 +51,7 @@ export const updateArtist = async (req: Request, res: Response) => {
 
     const artistToUpdated = await Artist.update(
       {
-        id: artistId,
+        id: parseInt(artistId),
       },
       {
         name: name,
@@ -60,7 +61,7 @@ export const updateArtist = async (req: Request, res: Response) => {
     );
     const artistUpdated = await Artist.findOne({
       where: {
-        id: artistId,
+        id: parseInt(artistId),
       },
       relations: { genre: true },
     });
@@ -73,6 +74,34 @@ export const updateArtist = async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       message: "Artist cant be updated",
+    });
+  }
+};
+
+export const deleteArtist = async (req: Request, res: Response) => {
+  try {
+    const artistId = req.params.id;
+
+    const artistToRemove: any = await Artist.findOneBy({
+      id: parseInt(artistId),
+    });
+    if (!artistToRemove) {
+      return res.status(404).json({
+        success: false,
+        message: "Artist not found",
+      });
+    }
+
+    await Artist.remove(artistToRemove);
+    res.status(201).json({
+      success: true,
+      message: "Artist deleted successfully",
+      data: artistToRemove,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Artist cant be deleted",
     });
   }
 };

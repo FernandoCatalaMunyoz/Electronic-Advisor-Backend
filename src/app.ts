@@ -12,7 +12,11 @@ import {
   updateProfile,
 } from "./Controllers/userController";
 import { isSuperAdmin } from "./Middlewares/isSuperAdmin";
-import { createArtist, updateArtist } from "./Controllers/artistController";
+import {
+  createArtist,
+  deleteArtist,
+  updateArtist,
+} from "./Controllers/artistController";
 
 const app: Application = express();
 
@@ -45,5 +49,6 @@ app.delete("/api/user/:id", auth, isSuperAdmin, deleteUserById);
 
 app.post("/api/artist", auth, isSuperAdmin, createArtist);
 app.put("/api/artist", auth, isSuperAdmin, updateArtist);
+app.delete("/api/artist/:id", auth, isSuperAdmin, deleteArtist);
 
 export default app;
