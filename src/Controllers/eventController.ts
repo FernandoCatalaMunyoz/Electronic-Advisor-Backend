@@ -128,3 +128,33 @@ export const getEvents = async (req: Request, res: Response) => {
     });
   }
 };
+
+//OBTENER EVENTO POR ID
+
+export const getEventById = async (req: Request, res: Response) => {
+  try {
+    const eventId = req.params.id;
+    const event = await Event.findOne({
+      where: {
+        id: parseInt(eventId),
+      },
+      relations: ["club"],
+    });
+    if (!event) {
+      return res.status(404).json({
+        success: false,
+        message: "Event not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Event retrieved successfully",
+      data: event,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Event cant be retrieved",
+    });
+  }
+};

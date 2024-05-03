@@ -28,6 +28,7 @@ import {
 import {
   createEvent,
   deleteEvent,
+  getEventById,
   getEvents,
   updateEvent,
 } from "./Controllers/eventController";
@@ -80,4 +81,5 @@ app.post("/api/events", auth, isSuperAdmin, createEvent);
 app.put("/api/events/:id", auth, isSuperAdmin, updateEvent);
 app.delete("/api/events/:id", auth, isSuperAdmin, deleteEvent);
 app.get("/api/events", getEvents);
+app.get("/api/events/:id", getEventById);
 export default app;
