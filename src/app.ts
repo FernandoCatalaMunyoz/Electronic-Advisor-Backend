@@ -32,6 +32,7 @@ import {
   getEvents,
   updateEvent,
 } from "./Controllers/eventController";
+import { createGenre, deleteGenre } from "./Controllers/genreController";
 
 const app: Application = express();
 
@@ -82,4 +83,9 @@ app.put("/api/events/:id", auth, isSuperAdmin, updateEvent);
 app.delete("/api/events/:id", auth, isSuperAdmin, deleteEvent);
 app.get("/api/events", getEvents);
 app.get("/api/events/:id", getEventById);
+
+//RUTAS GENEROS
+
+app.post("/api/genres", auth, isSuperAdmin, createGenre);
+app.delete("/api/genres/:id", auth, isSuperAdmin, deleteGenre);
 export default app;
