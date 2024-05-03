@@ -15,6 +15,7 @@ import { isSuperAdmin } from "./Middlewares/isSuperAdmin";
 import {
   createArtist,
   deleteArtist,
+  getArtistById,
   getArtists,
   updateArtist,
 } from "./Controllers/artistController";
@@ -52,5 +53,6 @@ app.post("/api/artist", auth, isSuperAdmin, createArtist);
 app.put("/api/artist", auth, isSuperAdmin, updateArtist);
 app.delete("/api/artist/:id", auth, isSuperAdmin, deleteArtist);
 app.get("/api/artist", getArtists);
+app.get("/api/artist/:id", getArtistById);
 
 export default app;

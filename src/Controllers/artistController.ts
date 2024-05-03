@@ -130,3 +130,26 @@ export const getArtists = async (req: Request, res: Response) => {
     });
   }
 };
+//TRER ARTISTA POR ID
+
+export const getArtistById = async (req: Request, res: Response) => {
+  try {
+    const artistId = req.params.id;
+    const artist = await Artist.findOne({
+      where: {
+        id: parseInt(artistId),
+      },
+    });
+    if (!artist) {
+      return res.status(404).json({
+        success: false,
+        message: "Artist not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Artist retrieved successfully",
+      data: artist,
+    });
+  } catch (error) {}
+};
