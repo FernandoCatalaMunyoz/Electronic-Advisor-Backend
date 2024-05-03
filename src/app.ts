@@ -40,6 +40,7 @@ import {
 import {
   createClub,
   deleteClub,
+  getClubById,
   getClubs,
   updateClub,
 } from "./Controllers/clubController";
@@ -105,4 +106,5 @@ app.post("/api/clubs", auth, isSuperAdmin, createClub);
 app.put("/api/clubs/:id", auth, isSuperAdmin, updateClub);
 app.delete("/api/clubs/:id", auth, isSuperAdmin, deleteClub);
 app.get("/api/clubs", getClubs);
+app.get("/api/clubs/:id", getClubById);
 export default app;

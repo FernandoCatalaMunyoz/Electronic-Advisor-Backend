@@ -125,3 +125,30 @@ export const getClubs = async (req: Request, res: Response) => {
     });
   }
 };
+//TRAE UN CLUB POR ID
+export const getClubById = async (req: Request, res: Response) => {
+  try {
+    const clubId = req.params.id;
+    const club = await Club.findOne({
+      where: {
+        id: parseInt(clubId),
+      },
+    });
+    if (!club) {
+      return res.status(404).json({
+        success: false,
+        message: "Club not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Club retrieved successfully",
+      data: club,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Club cant be retrieved",
+    });
+  }
+};
