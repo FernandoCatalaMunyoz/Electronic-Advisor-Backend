@@ -167,6 +167,7 @@ const eventSeedDatabase = async () => {
     await AppDataSource.destroy();
   }
 };
+//CREACION SEEDER ARTISTAS-EVENTOS
 
 const startSeeder = async () => {
   await roleSeedDataBase();

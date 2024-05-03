@@ -25,6 +25,7 @@ import {
   deleteRole,
   updateRole,
 } from "./Controllers/roleController";
+import { createEvent } from "./Controllers/eventControllre";
 
 const app: Application = express();
 
@@ -68,4 +69,7 @@ app.post("/api/roles", auth, isSuperAdmin, createRole);
 app.delete("/api/roles/:id", auth, isSuperAdmin, deleteRole);
 app.put("/api/roles/:id", auth, isSuperAdmin, updateRole);
 
+//RUTAS EVENTOS
+
+app.post("/api/events", auth, isSuperAdmin, createEvent);
 export default app;
