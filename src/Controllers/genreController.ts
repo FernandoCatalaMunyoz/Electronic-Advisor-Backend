@@ -50,3 +50,20 @@ export const deleteGenre = async (req: Request, res: Response) => {
     });
   }
 };
+
+//TRAER GENEROS
+export const getGenres = async (req: Request, res: Response) => {
+  try {
+    const genres = await Genre.find();
+    res.status(200).json({
+      success: true,
+      message: "Genres fetched successfully",
+      data: genres,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Genres cant be fetched",
+    });
+  }
+};

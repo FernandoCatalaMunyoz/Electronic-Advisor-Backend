@@ -32,7 +32,11 @@ import {
   getEvents,
   updateEvent,
 } from "./Controllers/eventController";
-import { createGenre, deleteGenre } from "./Controllers/genreController";
+import {
+  createGenre,
+  deleteGenre,
+  getGenres,
+} from "./Controllers/genreController";
 
 const app: Application = express();
 
@@ -88,4 +92,5 @@ app.get("/api/events/:id", getEventById);
 
 app.post("/api/genres", auth, isSuperAdmin, createGenre);
 app.delete("/api/genres/:id", auth, isSuperAdmin, deleteGenre);
+app.get("/api/genres", getGenres);
 export default app;
