@@ -20,6 +20,7 @@ import {
   getArtistsByGenre,
   updateArtist,
 } from "./Controllers/artistController";
+import { createRole } from "./Controllers/roleController";
 
 const app: Application = express();
 
@@ -56,5 +57,9 @@ app.delete("/api/artist/:id", auth, isSuperAdmin, deleteArtist);
 app.get("/api/artist", getArtists);
 app.get("/api/artist/genre", getArtistsByGenre);
 app.get("/api/artist/:id", getArtistById);
+
+//RUTAS ROLES
+
+app.post("/api/roles", auth, isSuperAdmin, createRole);
 
 export default app;

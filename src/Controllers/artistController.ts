@@ -2,8 +2,6 @@
 
 import { Request, Response } from "express";
 import { Artist } from "../Models/Artist";
-import { tr } from "@faker-js/faker";
-import { parse } from "path";
 
 export const createArtist = async (req: Request, res: Response) => {
   try {
