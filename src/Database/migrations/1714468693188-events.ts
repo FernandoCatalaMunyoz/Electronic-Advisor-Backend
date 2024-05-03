@@ -19,6 +19,18 @@ export class Events1714468693188 implements MigrationInterface {
             length: "40",
           },
           {
+            name: "month",
+            type: "int",
+          },
+          {
+            name: "day",
+            type: "int",
+          },
+          {
+            name: "year",
+            type: "int",
+          },
+          {
             name: "club_id",
             type: "int",
             isNullable: true,

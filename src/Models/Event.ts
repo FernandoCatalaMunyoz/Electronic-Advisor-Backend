@@ -19,6 +19,15 @@ export class Event extends BaseEntity {
   @Column({ name: "name" })
   name!: string;
 
+  @Column({ name: "month" })
+  month!: number;
+
+  @Column({ name: "day" })
+  day!: number;
+
+  @Column({ name: "year" })
+  year!: number;
+
   @ManyToOne(() => Club, (club) => club.event)
   @JoinColumn({ name: "club_id" })
   club!: Club;

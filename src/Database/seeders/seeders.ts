@@ -6,6 +6,7 @@ import { Event } from "../../Models/Event";
 import { AppDataSource } from "../db";
 import { faker } from "@faker-js/faker";
 import bcrypt from "bcrypt";
+import { Club } from "../../Models/Club";
 
 const roleSeedDataBase = async () => {
   try {
@@ -35,7 +36,7 @@ const userSeedDatabase = async () => {
     user.lastName = "user";
     user.country = "spain";
     user.email = "user@user.com";
-    user.password = bcrypt.hashSync("123456", 8); //123456
+    user.password = bcrypt.hashSync("Aa123456", 5); //Aa123456
     user.role = new Role();
     user.role.id = 1;
     await user.save();
@@ -58,7 +59,7 @@ const userSeedDatabase = async () => {
       user.lastName = faker.person.lastName();
       user.country = faker.location.country();
       user.email = faker.internet.email();
-      user.password = bcrypt.hashSync("Aa123456", 8); // 123456
+      user.password = bcrypt.hashSync("123456", 8); // 123456
       user.role = new Role();
       user.role.id = 1;
 
@@ -125,11 +126,54 @@ const artistSeedDatabase = async () => {
     await AppDataSource.destroy();
   }
 };
+// Creacion clubs
+const clubSeedDatabase = async () => {
+  await AppDataSource.initialize();
+  try {
+    const generateFakeClub = () => {
+      const club = new Club();
+      club.name = faker.company.name();
+      club.adress = faker.location.streetAddress();
+      club.link = faker.internet.url();
+      return club;
+    };
+    const fakeClub = Array.from({ length: 15 }, generateFakeClub);
+    await Club.save(fakeClub);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    await AppDataSource.destroy();
+  }
+};
+//Creacion eventos
+
+const eventSeedDatabase = async () => {
+  await AppDataSource.initialize();
+  try {
+    const generateFakeEvent = () => {
+      const event = new Event();
+      event.name = faker.lorem.words();
+      event.month = faker.number.int({ min: 1, max: 12 });
+      event.day = faker.number.int({ min: 1, max: 28 });
+      event.year = faker.number.int({ min: 2024, max: 2025 });
+      event.club = new Club();
+      event.club.id = faker.number.int({ min: 1, max: 5 });
+      return event;
+    };
+    const fakeEvent = Array.from({ length: 15 }, generateFakeEvent);
+    await Event.save(fakeEvent);
+  } catch (error) {
+  } finally {
+    await AppDataSource.destroy();
+  }
+};
 
 const startSeeder = async () => {
   await roleSeedDataBase();
   await userSeedDatabase();
   await genresSeedDatabase();
   await artistSeedDatabase();
+  await clubSeedDatabase();
+  await eventSeedDatabase();
 };
 startSeeder();

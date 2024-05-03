@@ -13,13 +13,13 @@ export class Club extends BaseEntity {
   id!: number;
 
   @Column({ name: "name" })
-  firstName!: string;
+  name!: string;
 
   @Column({ name: "adress" })
-  lastName!: string;
+  adress!: string;
 
   @Column({ name: "link" })
-  country!: string;
+  link!: string;
 
   @Column({ name: "created_at" })
   createdAt!: Date;
