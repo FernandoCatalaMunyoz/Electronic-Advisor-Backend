@@ -113,7 +113,7 @@ export const updateProfile = async (req: Request, res: Response) => {
 //FUNCION PARA TRAER TODOS LOS USUARIOS
 export const getUsers = async (req: Request, res: Response) => {
   try {
-    let limit = Number(req.query.limit) || 10;
+    let limit = Number(req.query.limit) || 9;
     const page = Number(req.query.page) || 1;
     const skip = (page - 1) * limit;
 

@@ -25,7 +25,12 @@ import {
   deleteRole,
   updateRole,
 } from "./Controllers/roleController";
-import { createEvent, updateEvent } from "./Controllers/eventControllre";
+import {
+  createEvent,
+  deleteEvent,
+  getEvents,
+  updateEvent,
+} from "./Controllers/eventController";
 
 const app: Application = express();
 
@@ -73,4 +78,6 @@ app.put("/api/roles/:id", auth, isSuperAdmin, updateRole);
 
 app.post("/api/events", auth, isSuperAdmin, createEvent);
 app.put("/api/events/:id", auth, isSuperAdmin, updateEvent);
+app.delete("/api/events/:id", auth, isSuperAdmin, deleteEvent);
+app.get("/api/events", getEvents);
 export default app;

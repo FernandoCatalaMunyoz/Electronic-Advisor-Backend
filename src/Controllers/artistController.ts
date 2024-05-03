@@ -106,7 +106,7 @@ export const deleteArtist = async (req: Request, res: Response) => {
 //TRAER TODOS LOS ARTISTAS
 export const getArtists = async (req: Request, res: Response) => {
   try {
-    let limit = Number(req.query.limit) || 10;
+    let limit = Number(req.query.limit) || 9;
     const page = Number(req.query.page) || 1;
     const skip = (page - 1) * limit;
 
@@ -156,7 +156,7 @@ export const getArtistById = async (req: Request, res: Response) => {
 
 export const getArtistsByGenre = async (req: Request, res: Response) => {
   try {
-    let limit = Number(req.query.limit) || 10;
+    let limit = Number(req.query.limit) || 9;
     const page = Number(req.query.page) || 1;
     const skip = (page - 1) * limit;
     const genreId = req.body.genre;
