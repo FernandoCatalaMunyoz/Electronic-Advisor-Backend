@@ -8,7 +8,6 @@ import { handleError } from "../utils/handleError";
 
 export const register = async (req: Request, res: Response) => {
   try {
-    console.log(req.body, "Hola");
     {
       const firstName = req.body.firstName;
       const lastName = req.body.lastName;
@@ -57,7 +56,7 @@ export const register = async (req: Request, res: Response) => {
       }).save();
 
       res.status(201).json({
-        succes: true,
+        success: true,
         message: "User registered succesfully",
         data: newUser,
       });
@@ -144,7 +143,6 @@ export const login = async (req: Request, res: Response) => {
         firstName: user.firstName,
         lastName: user.lastName,
         country: user.country,
-        email: user.email,
       },
       process.env.JWT_SECRET as string,
       {

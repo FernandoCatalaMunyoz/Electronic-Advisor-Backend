@@ -122,15 +122,6 @@ export const getUsers = async (req: Request, res: Response) => {
     }
 
     const users = await User.find({
-      select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        country: true,
-        createdAt: true,
-        updatedAt: true,
-      },
       take: limit,
       skip: skip,
     });
