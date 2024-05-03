@@ -153,3 +153,33 @@ export const getArtistById = async (req: Request, res: Response) => {
     });
   } catch (error) {}
 };
+
+//TRAER ARTISTAS POR GENERO
+
+export const getArtistsByGenre = async (req: Request, res: Response) => {
+  try {
+    let limit = Number(req.query.limit) || 10;
+    const page = Number(req.query.page) || 1;
+    const skip = (page - 1) * limit;
+    const genreId = req.body.genre;
+
+    const artists = await Artist.find({
+      take: limit,
+      skip: skip,
+      where: {
+        genre: { id: genreId },
+      },
+      relations: { genre: true },
+    });
+    res.status(200).json({
+      success: true,
+      message: "Artists retrieved successfully",
+      data: artists,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Artists cant be retrieved",
+    });
+  }
+};
