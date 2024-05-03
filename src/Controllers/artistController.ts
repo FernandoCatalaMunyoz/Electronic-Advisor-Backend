@@ -48,7 +48,7 @@ export const updateArtist = async (req: Request, res: Response) => {
         message: "Artist not found",
       });
     }
-
+    //MODIFICAR ARTISTA
     const artistToUpdated = await Artist.update(
       {
         id: parseInt(artistId),
@@ -77,7 +77,7 @@ export const updateArtist = async (req: Request, res: Response) => {
     });
   }
 };
-
+//BORRAR ARTISTA
 export const deleteArtist = async (req: Request, res: Response) => {
   try {
     const artistId = req.params.id;
@@ -102,6 +102,31 @@ export const deleteArtist = async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       message: "Artist cant be deleted",
+    });
+  }
+};
+//TRAER TODOS LOS ARTISTAS
+export const getArtists = async (req: Request, res: Response) => {
+  try {
+    let limit = Number(req.query.limit) || 10;
+    const page = Number(req.query.page) || 1;
+    const skip = (page - 1) * limit;
+
+    if (limit > 100) {
+      limit = 10;
+    }
+    const artists = await Artist.find({
+      take: limit,
+      skip: skip,
+    });
+    res.status(200).json({
+      success: true,
+      data: artists,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Artists cant be retrieved",
     });
   }
 };
