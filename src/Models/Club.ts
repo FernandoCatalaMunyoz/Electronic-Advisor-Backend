@@ -16,7 +16,7 @@ export class Club extends BaseEntity {
   name!: string;
 
   @Column({ name: "adress" })
-  adress!: string;
+  address!: string;
 
   @Column({ name: "link" })
   link!: string;

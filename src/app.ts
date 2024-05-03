@@ -37,6 +37,7 @@ import {
   deleteGenre,
   getGenres,
 } from "./Controllers/genreController";
+import { createClub } from "./Controllers/clubController";
 
 const app: Application = express();
 
@@ -93,4 +94,7 @@ app.get("/api/events/:id", getEventById);
 app.post("/api/genres", auth, isSuperAdmin, createGenre);
 app.delete("/api/genres/:id", auth, isSuperAdmin, deleteGenre);
 app.get("/api/genres", getGenres);
+
+//RUTAS CLUBS
+app.post("/api/clubs", auth, isSuperAdmin, createClub);
 export default app;
