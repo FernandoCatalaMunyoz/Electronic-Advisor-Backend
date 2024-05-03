@@ -12,7 +12,7 @@ import {
   updateProfile,
 } from "./Controllers/userController";
 import { isSuperAdmin } from "./Middlewares/isSuperAdmin";
-import { createArtist } from "./Controllers/artistController";
+import { createArtist, updateArtist } from "./Controllers/artistController";
 
 const app: Application = express();
 
@@ -44,5 +44,6 @@ app.delete("/api/user/:id", auth, isSuperAdmin, deleteUserById);
 //RUTAS ARTISTA
 
 app.post("/api/artist", auth, isSuperAdmin, createArtist);
+app.put("/api/artist", auth, isSuperAdmin, updateArtist);
 
 export default app;
