@@ -204,7 +204,7 @@ export const deleteProfile = async (req: Request, res: Response) => {
     });
   } catch (error) {
     res.status(500).json({
-      succes: true,
+      succes: false,
       message: "Profile cant be deleted",
     });
   }
