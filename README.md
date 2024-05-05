@@ -20,7 +20,7 @@ Electronic-Advisor es una página en la que podras estar a la ultima en lo refer
 
 Tecnologías utilizadas:
 
-![MYSQL](./img/mysql-logo.svg){width=80} ![EXPRESS](./img/express-109.svg){width=80} ![TYPESCRIPT](./img/typescript.svg){width=40} ![NODEJS](./img/nodejs.svg){width=80}
+<img src="/img/mysql.svg" alt="GitHub" />
 
 ## Diagrama BD
 
@@ -96,75 +96,203 @@ Email y password de lso 3 usuarios básicos:
 
 ### USER
 
-### Ver todos los usuarios(super_admin):
+#### Ver todos los usuarios(Super_admin):
 
      url: GET localhost:4000/api/users
-     Auth/Bearer:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM1LCJyb2xlTmFtZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzA5NTgwMTYyLCJleHAiOjE3MTE0NTIxNjJ9.mk2x9ZUd-Q3gSK--X2oEf5TkuO2ajnLBplAiKHNlrig"
+     Auth/Bearer:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
 
-### Ver perfil de usuario:
+#### Ver perfil de usuario:
 
-     url: GET localhost:4000/api/profile
-     Auth/Bearer:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMzLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MDk1ODAyNjAsImV4cCI6MTcxMTQ1MjI2MH0.iAIxUOAKcjSmJmZ0hOg4QTMVwjYGjZA8_IyycJTq76g"
+     url: GET localhost:4000/api/user/profile
+     Auth/Bearer:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJyb2xlTmFtZSI6InVzZXIiLCJmaXJzdE5hbWUiOiJGZXJuYW5kbyIsImxhc3ROYW1lIjoiRmVybmFuZG8iLCJlbWFpbCI6ImZlckBmZXIuY29tIiwiaWF0IjoxNzE0NTYxMDQ2LCJleHAiOjE3MTY0MzMwNDZ9.XTup-szvLC7EOccn9MmYdcwa6U_RQX0FTEKexmNw2XY"
 
-### Modificar perfil usuario:
+#### Modificar perfil usuario:
 
-     url: PUT localhost:4000/api/profile
+     url: PUT localhost:4000/api/user/profile
      Auth:
-      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMzLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MDk1Nzg4OTMsImV4cCI6MTcxMTQ1MDg5M30.1YEEHjp5J3GgaVLliRBEJOCy4dyYKTNJ8WTI0o4xfjA"
+      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE4LCJyb2xlTmFtZSI6InVzZXIiLCJmaXJzdE5hbWUiOiJGZXJuYW5kbyIsImxhc3ROYW1lIjoiRmVybmFuZG8iLCJlbWFpbCI6ImZlckBmZXIuY29tIiwiaWF0IjoxNzE0NTYxMDQ2LCJleHAiOjE3MTY0MzMwNDZ9.XTup-szvLC7EOccn9MmYdcwa6U_RQX0FTEKexmNw2XY"
      Body:
     {
-        "dato a cambiar"(first_name,last_name,email): "dato a introducir"
+        "dato a cambiar"(firstName,lastName,country,email): "dato a introducir"
     }
 
-### Eliminar perfil usuario(super_admin):
+#### Eliminar perfil usuario(Super_admin):
 
-     url: DELETE localhost:4000/api/users/:id
+     url: DELETE localhost:4000/api/user/:id
      Auth:
-      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM1LCJyb2xlTmFtZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzA5NTgwMTYyLCJleHAiOjE3MTE0NTIxNjJ9.mk2x9ZUd-Q3gSK--X2oEf5TkuO2ajnLBplAiKHNlrig"
+      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
 
-### Ver todos los servicios:
+#### Eliminar perfil propio:
 
-    url: GET localhost:4000/api/services
-
-### Crear servicio(super_admin):
-
-    url: POST localhost:4000/api/services
+     url: DELETE localhost:4000/api/user/:id
      Auth:
-       Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM1LCJyb2xlTmFtZSI6InN1cGVyX2FkbWluIiwiaWF0IjoxNzA5NTgwMTYyLCJleHAiOjE3MTE0NTIxNjJ9.mk2x9ZUd-Q3gSK--X2oEf5TkuO2ajnLBplAiKHNlrig"
+      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+
+### ARTISTA
+
+#### Crear artista(Super_admin):
+
+    url: POST localhost:4000/api/artist
+    Auth:
+      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+      -  Body:
+    {   "id": id del artista a cambiar
+        "dato a cambiar"(name,genre): "dato a introducir"
+    }
+
+#### Borrar artista(Super_admin):
+
+    url: DELETE localhost:4000/api/artist/:id
+    Auth:
+      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+
+#### Modificar artista(Super_admin):
+
+    url: PUT localhost:4000/api/artist/:id
+    Auth:
+      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+      -  {
+        "id":id del artista a modificar
+        "dato a cambiar"(name,genrel): "dato a introducir"
+    }
+
+#### Traer todos los artistas:
+
+    url: GET localhost:4000/api/artist
+
+#### Traer artista por ID:
+
+    url: GET localhost:4000/api/artist/:id
+
+#### Traer artistas por genero:
+
+    url: PUT localhost:4000/api/artist
+    Body:
+      -  {
+        "genre": id delgenero del que queremos traer los artistas
+    }
+
+### ROLE
+
+#### Crear Role(Super_admin)
+
+     url: POST localhost:4000/api/roles
+
+- Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+
+  Body: - {
+
+  "name": nombre de role a crear
+  }
+
+#### Borrar Role(Super_admin)
+
+      url: delete localhost:4000/api/role/:id
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+
+#### Modificar Role(Super_admin)
+
+      url: PUT localhost:4000/api/roles/:id
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
      Body:
-    {
-        "services_name": "Nombre del servicio a crear"
+      -  {
+        "name": nombre de role modificado
     }
 
-### Generar cita:
+### EVENT
 
-    url: POST localhost:4000/api/appointments
-    Auth:(del usuario que quiere pedir una cita)
-      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoidXNlciIsImlhdCI6MTcwOTU4MjY2OCwiZXhwIjoxNzExNDU0NjY4fQ.q0lqTiG7mNRSGTLBeclydT5pylVsnldk-6VcqDYg8Vk"
-    Body:
-    {
-        "appointment_date": "MM/DD/YY hh:mm",
-        "service_id: "id del servicio (1-5)"
+#### Crear evento(Super_admin)
+
+      url: POST localhost:4000/api/events
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+     Body:
+      -  {
+        "name": nombre del evento
+        "month":mes del evento
+        "day":dia del evento
+        "year": año del evento
+        "clubId": id del club donde se celebra el evento
     }
 
-### Actualizar cita:
+#### Modificar evento(Super_admin)
 
-    url: PUT localhost:4000/api/appointments
-    Auth:(del usuario que quiere actualizar una cita)
-      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMzLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MDk1NzMyMjksImV4cCI6MTcxMTQ0NTIyOX0.i92n1vEstGOt9K37X8-oJ_GtivBJ0yFjkNw_IIwWKl4"
-    Body:
-    {
-        "appointmentId":"Id de la cita a cambiar",
-        "appointmentDate": "Nueva fecha(MM/DD/AA hh:mm)"
+      url: PUT localhost:4000/api/events/:id
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+     Body:
+      -  {
+        "name": nombre del evento
+        "month":mes del evento
+        "day":dia del evento
+        "year": año del evento
+        "clubId": id del club donde se celebra el evento
     }
 
-### Recuperar cita:
+#### Borrar evento(Super_admin)
 
-    url: GET localhost:4000/api/appointments/:id
-      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMzLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MDk1NzgzOTgsImV4cCI6MTcxMTQ1MDM5OH0.sA9fkoNp_AdCM5npU7Sv4o6V-DW9Jso9CfennkPFCQs"
+      url: DELETE localhost:4000/api/events
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
 
-### Recuperar citas del usuario loggeado:
+#### Traer todos los eventos
 
-    url: GET localhost:4000/api/appointments
-    Auth:(del usuario que quiere consultar sus citas)
-      - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMzLCJyb2xlTmFtZSI6InVzZXIiLCJpYXQiOjE3MDk1NzgzOTgsImV4cCI6MTcxMTQ1MDM5OH0.sA9fkoNp_AdCM5npU7Sv4o6V-DW9Jso9CfennkPFCQs"
+       url: GET localhost:4000/api/events
+
+#### Traer evento por ID
+
+       url: POST localhost:4000/api/events/:id
+
+### GENRE
+
+#### Crear Genero(Super_admin)
+
+      url: POST localhost:4000/api/genres
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+     Body:
+      -  {
+        "name": nombre del genero a crear
+    }
+
+#### Borrar Genero(Super_admin)
+
+      url: DELETE localhost:4000/api/genres/:id
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+
+#### Traer Generos
+
+     url: GET localhost:4000/api/genres
+
+### CLUB
+
+#### Crear club(Super_admin)
+
+      url: POST localhost:4000/api/clubs
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+     Body:
+      -  {
+        "name": nombre del club
+        "adress": direccion del club
+        "link": link a la web del club
+    }
+
+#### Modificar club(Super_admin)
+
+      url: PUT localhost:4000/api/clubs/:id
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+     Body:
+      -  {
+        "name": nombre del club
+        "adress": direccion del club
+        "link": link a la web del club
+    }
+
+#### Borrar club(Super_admin)
+
+       url: DELETE localhost:4000/api/clubs/:id
+    - Bearer: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJmaXJzdE5hbWUiOiJzdXBlcl9hZG1pbiIsImxhc3ROYW1lIjoic3VwZXJfYWRtaW4iLCJlbWFpbCI6InN1cGVyX2FkbWluQHN1cGVyX2FkbWluLmNvbSIsImlhdCI6MTcxNDU1ODA1NiwiZXhwIjoxNzE2NDMwMDU2fQ.OQ-F3kzM1Yti9pILSeAt4U89JVGIuWW95_LyIdl_Sds"
+
+#### Traer todos los clubs
+
+    url: GET localhost:4000/api/clubs
+
+#### Traer club por ID
+
+    url: GET localhost:4000/api/clubs/:id
