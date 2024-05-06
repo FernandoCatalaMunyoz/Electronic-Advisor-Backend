@@ -8,14 +8,14 @@ export const isSuperAdmin = (
   try {
     if (req.tokenData.roleName !== "super_admin") {
       return res.status(401).json({
-        succes: false,
+        success: false,
         message: "UNAUTHORIZED",
       });
     }
     next();
   } catch (error) {
     return res.status(500).json({
-      succes: false,
+      success: false,
       message: "You dont have credentials",
     });
   }

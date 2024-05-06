@@ -90,7 +90,7 @@ export const login = async (req: Request, res: Response) => {
 
     if (!email || !password) {
       return res.status(400).json({
-        succes: false,
+        success: false,
         message: "Email and password are needed",
       });
     }
@@ -124,7 +124,7 @@ export const login = async (req: Request, res: Response) => {
 
     if (!user) {
       return res.status(404).json({
-        succes: false,
+        success: false,
         message: "user not found",
       });
     }
@@ -132,7 +132,7 @@ export const login = async (req: Request, res: Response) => {
     const isValidPassword = bcrypt.compareSync(password, user.password);
     if (!isValidPassword) {
       return res.status(400).json({
-        succes: false,
+        success: false,
         message: "email or password invalid",
       });
     }
@@ -152,7 +152,7 @@ export const login = async (req: Request, res: Response) => {
     const decoded = jwt.decode(token);
     console.log(decoded, "token");
     return res.status(201).json({
-      succes: true,
+      success: true,
       message: "User logged succesfully",
       token: token,
     });

@@ -52,7 +52,7 @@ app.use(cors());
 
 app.use("/api/healthy", (req, res) => {
   res.status(200).json({
-    succes: true,
+    success: true,
     message: "Server is healthy",
   });
 });

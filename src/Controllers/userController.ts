@@ -29,20 +29,20 @@ export const getProfile = async (req: Request, res: Response) => {
     });
     if (!user) {
       return res.status(404).json({
-        succes: true,
+        success: true,
         message: "User not found",
         data: user,
       });
     }
 
     res.status(201).json({
-      succes: true,
+      success: true,
       message: "User retrieved",
       data: user,
     });
   } catch (error) {
     res.status(500).json({
-      succes: true,
+      success: true,
       message: "User cant be retrieved",
     });
   }
@@ -127,7 +127,7 @@ export const getUsers = async (req: Request, res: Response) => {
     });
 
     res.status(201).json({
-      succes: true,
+      success: true,
       message: "Users retrieved succesfully",
       data: users,
     });
@@ -152,13 +152,13 @@ export const deleteUserById = async (req: Request, res: Response) => {
     console.log(userToRemove);
     if (userToRemove.roleName === "super_admin") {
       res.status(400).json({
-        succes: false,
+        success: false,
         message: "super_admin cant be deleted",
       });
     }
     if (!userToRemove) {
       res.status(404).json({
-        succes: false,
+        success: false,
         message: "user not found",
       });
     }
@@ -166,12 +166,12 @@ export const deleteUserById = async (req: Request, res: Response) => {
     await User.remove(userToRemove);
 
     res.status(201).json({
-      succes: true,
+      success: true,
       message: "User deleted",
     });
   } catch (error) {
     res.status(500).json({
-      succes: false,
+      success: false,
       message: "User cant be deleted",
     });
   }
@@ -191,7 +191,7 @@ export const deleteProfile = async (req: Request, res: Response) => {
 
     if (!userToRemove) {
       res.status(404).json({
-        succes: false,
+        success: false,
         message: "user not found",
       });
     }
@@ -199,12 +199,12 @@ export const deleteProfile = async (req: Request, res: Response) => {
     await User.remove(userToRemove);
 
     res.status(201).json({
-      succes: true,
+      success: true,
       message: "Profile deleted",
     });
   } catch (error) {
     res.status(500).json({
-      succes: false,
+      success: false,
       message: "Profile cant be deleted",
     });
   }

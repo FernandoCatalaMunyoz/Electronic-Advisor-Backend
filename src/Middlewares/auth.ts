@@ -9,7 +9,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     if (!token) {
       console.log("dani");
       return res.status(401).json({
-        succes: false,
+        success: false,
         message: "UNAUTHORIZE",
       });
     }
@@ -20,7 +20,7 @@ export const auth = (req: Request, res: Response, next: NextFunction) => {
     next();
   } catch (error) {
     return res.status(500).json({
-      succes: false,
+      success: false,
       message: "JWT NOT VALID OR MALFORMED",
     });
   }
