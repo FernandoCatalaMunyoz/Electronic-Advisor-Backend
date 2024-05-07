@@ -14,6 +14,7 @@ import { Club } from "../Models/Club";
 import { Artist } from "../Models/Artist";
 import { Genre } from "../Models/Genre";
 import { Event } from "../Models/Event";
+import { ArtistEvent } from "../Models/Artist-Event";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -22,7 +23,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE || "test",
-  entities: [Role, User, Club, Event, Artist, Genre],
+  entities: [Role, User, Club, Event, Artist, Genre, ArtistEvent],
   migrations: [
     Roles1714464357650,
     Users1714464379320,

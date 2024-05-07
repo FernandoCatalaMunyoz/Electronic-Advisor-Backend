@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { Event } from "../Models/Event";
+import { tr } from "@faker-js/faker";
+import { ArtistEvent } from "../Models/Artist-Event";
 
 // CREAR EVENTO
 export const createEvent = async (req: Request, res: Response) => {
@@ -114,7 +116,8 @@ export const getEvents = async (req: Request, res: Response) => {
     const events = await Event.find({
       take: limit,
       skip: skip,
-      relations: ["club"],
+      // relations: { club: true, artistEvents: { artist: true } },
+      relations: { club: true },
     });
     res.status(200).json({
       success: true,
@@ -134,27 +137,30 @@ export const getEvents = async (req: Request, res: Response) => {
 export const getEventById = async (req: Request, res: Response) => {
   try {
     const eventId = req.params.id;
-    const event = await Event.findOne({
+    const event = await ArtistEvent.find({
       where: {
-        id: parseInt(eventId),
+        event: { id: parseInt(eventId) },
       },
-      relations: ["club"],
+      relations: { artist: true },
     });
+
     if (!event) {
       return res.status(404).json({
         success: false,
         message: "Event not found",
       });
     }
+
     res.status(200).json({
       success: true,
       message: "Event retrieved successfully",
       data: event,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
       success: false,
       message: "Event cant be retrieved",
+      error: error.message,
     });
   }
 };

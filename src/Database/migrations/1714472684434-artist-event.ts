@@ -16,10 +16,12 @@ export class ArtistEvent1714472684434 implements MigrationInterface {
           {
             name: "artist_id",
             type: "int",
+            isNullable: true,
           },
           {
             name: "event_id",
             type: "int",
+            isNullable: true,
           },
         ],
         foreignKeys: [

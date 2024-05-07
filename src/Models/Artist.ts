@@ -5,11 +5,10 @@ import {
   ManyToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
-  ManyToMany,
-  JoinTable,
+  OneToMany,
 } from "typeorm";
 import { Genre } from "./Genre";
-import { Event } from "./Event";
+
 import { ArtistEvent } from "./Artist-Event";
 
 @Entity("artists")
@@ -33,7 +32,6 @@ export class Artist extends BaseEntity {
   @JoinColumn({ name: "genre_id" })
   genre!: Genre;
 
-  @ManyToOne(() => ArtistEvent, (artistEvent) => artistEvent.artist)
-  @JoinColumn({ name: "artistEvent_id" })
-  artistEvent!: ArtistEvent;
+  @OneToMany(() => ArtistEvent, (artistEvent) => artistEvent.artist)
+  artistEvents!: ArtistEvent;
 }

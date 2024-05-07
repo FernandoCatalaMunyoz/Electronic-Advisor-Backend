@@ -5,6 +5,7 @@ import {
   ManyToOne,
   JoinColumn,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from "typeorm";
 import { Club } from "./Club";
 import { ArtistEvent } from "./Artist-Event";
@@ -30,7 +31,6 @@ export class Event extends BaseEntity {
   @JoinColumn({ name: "club_id" })
   club!: Club;
 
-  @ManyToOne(() => ArtistEvent, (artistEvent) => artistEvent.event)
-  @JoinColumn({ name: "artistEvent_id" })
-  artistEvent!: ArtistEvent;
+  @OneToMany(() => ArtistEvent, (artistEvent) => artistEvent.event)
+  artistEvents!: ArtistEvent;
 }

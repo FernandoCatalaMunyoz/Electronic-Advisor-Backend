@@ -2,7 +2,8 @@ import {
   BaseEntity,
   Column,
   Entity,
-  OneToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Artist } from "./Artist";
@@ -13,21 +14,11 @@ export class ArtistEvent extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column({ name: "artist_id" })
-  artistId!: number;
+  @ManyToOne(() => Artist, (artist) => artist.artistEvents)
+  @JoinColumn({ name: "artist_id" })
+  artist!: Artist;
 
-  @Column({ name: "event_id" })
-  eventId!: number;
-
-  @Column({ name: "created_at" })
-  createdAt!: Date;
-
-  @Column({ name: "updated_at" })
-  updatedAt!: Date;
-
-  @OneToMany(() => Artist, (artist) => artist.artistEvent)
-  artist!: Artist[];
-
-  @OneToMany(() => Event, (event) => event.artistEvent)
-  event!: Event[];
+  @ManyToOne(() => Event, (event) => event.artistEvents)
+  @JoinColumn({ name: "event_id" })
+  event!: Event;
 }
