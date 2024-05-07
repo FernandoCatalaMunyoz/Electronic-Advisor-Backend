@@ -133,7 +133,7 @@ const clubSeedDatabase = async () => {
     const generateFakeClub = () => {
       const club = new Club();
       club.name = faker.company.name();
-      club.adress = faker.location.streetAddress();
+      club.address = faker.location.streetAddress();
       club.link = faker.internet.url();
       return club;
     };

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { User } from "../Models/User";
 import { handleError } from "../utils/handleError";
-import { id_ID } from "@faker-js/faker";
+import { fi, id_ID } from "@faker-js/faker";
 
 //VER PERFIL DE USUARIO
 
@@ -67,16 +67,30 @@ export const updateProfile = async (req: Request, res: Response) => {
         });
       }
     }
+    if (
+      firstName.length < 3 ||
+      lastName.length < 3 ||
+      country.length < 3 ||
+      email.length < 3
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "firstName, lastName, country, email must have at least 3 characters",
+      });
+    }
+    if (!firstName || !email || !country || !lastName) {
+      return res.status(400).json({
+        success: false,
+        message: "firstName is needed",
+      });
+    }
 
     const userEmail = await User.findOne({
       where: {
         email: email,
       },
     });
-
-    if (userEmail) {
-      throw new Error("Email already in use");
-    }
 
     const userUpdated = await User.update(
       {
