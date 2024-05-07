@@ -29,11 +29,13 @@ export class ArtistEvent1714472684434 implements MigrationInterface {
             columnNames: ["artist_id"],
             referencedTableName: "artists",
             referencedColumnNames: ["id"],
+            onDelete: "CASCADE",
           },
           {
             columnNames: ["event_id"],
             referencedTableName: "events",
             referencedColumnNames: ["id"],
+            onDelete: "CASCADE",
           },
         ],
       }),

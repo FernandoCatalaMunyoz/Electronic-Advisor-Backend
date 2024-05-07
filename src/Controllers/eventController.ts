@@ -80,17 +80,17 @@ export const updateEvent = async (req: Request, res: Response) => {
 export const deleteEvent = async (req: Request, res: Response) => {
   try {
     const eventId = req.params.id;
-    const event = await Event.findOne({
-      where: {
-        id: parseInt(eventId),
-      },
-    });
-    if (!event) {
-      return res.status(404).json({
-        success: false,
-        message: "Event not found",
-      });
-    }
+    // const event = await Event.findOne({
+    //   where: {
+    //     id: parseInt(eventId),
+    //   },
+    // });
+    // if (!event) {
+    //   return res.status(404).json({
+    //     success: false,
+    //     message: "Event not found",
+    //   });
+    // }
     await Event.delete({
       id: parseInt(eventId),
     });
@@ -141,7 +141,7 @@ export const getEventById = async (req: Request, res: Response) => {
       where: {
         event: { id: parseInt(eventId) },
       },
-      relations: { artist: true },
+      relations: { artist: true, event: true },
     });
 
     if (!event) {
