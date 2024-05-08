@@ -116,6 +116,7 @@ export const getArtists = async (req: Request, res: Response) => {
     const artists = await Artist.find({
       take: limit,
       skip: skip,
+      relations: { genre: true },
     });
     res.status(200).json({
       success: true,
