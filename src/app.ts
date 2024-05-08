@@ -44,6 +44,7 @@ import {
   getClubs,
   updateClub,
 } from "./Controllers/clubController";
+import { createArtistEvent } from "./Controllers/artistEventController";
 
 const app: Application = express();
 
@@ -107,4 +108,7 @@ app.put("/api/clubs/:id", auth, isSuperAdmin, updateClub);
 app.delete("/api/clubs/:id", auth, isSuperAdmin, deleteClub);
 app.get("/api/clubs", getClubs);
 app.get("/api/clubs/:id", getClubById);
+
+//RUTAS ARTIST-EVENT
+app.post("/api/artist-event", auth, isSuperAdmin, createArtistEvent);
 export default app;
