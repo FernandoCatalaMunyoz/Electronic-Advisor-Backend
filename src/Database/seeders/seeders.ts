@@ -7,6 +7,7 @@ import { AppDataSource } from "../db";
 import { faker } from "@faker-js/faker";
 import bcrypt from "bcrypt";
 import { Club } from "../../Models/Club";
+import { ArtistEvent } from "../../Models/Artist-Event";
 
 const roleSeedDataBase = async () => {
   try {
@@ -168,7 +169,24 @@ const eventSeedDatabase = async () => {
   }
 };
 //CREACION SEEDER ARTISTAS-EVENTOS
-
+const evetArtistSeedDatabase = async () => {
+  await AppDataSource.initialize();
+  try {
+    const generateFakeEventArtist = () => {
+      const eventArtist = new ArtistEvent();
+      eventArtist.event = new Event();
+      eventArtist.event.id = faker.number.int({ min: 6, max: 15 });
+      eventArtist.artist = new Artist();
+      eventArtist.artist.id = faker.number.int({ min: 1, max: 15 });
+      return eventArtist;
+    };
+    const fakeArtistEvent = Array.from({ length: 15 }, generateFakeEventArtist);
+    await ArtistEvent.save(fakeArtistEvent);
+  } catch (error) {
+  } finally {
+    await AppDataSource.destroy();
+  }
+};
 const startSeeder = async () => {
   await roleSeedDataBase();
   await userSeedDatabase();
@@ -176,5 +194,6 @@ const startSeeder = async () => {
   await artistSeedDatabase();
   await clubSeedDatabase();
   await eventSeedDatabase();
+  await evetArtistSeedDatabase();
 };
 startSeeder();
