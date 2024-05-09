@@ -111,7 +111,7 @@ export const deleteEvent = async (req: Request, res: Response) => {
 export const getEvents = async (req: Request, res: Response) => {
   try {
     const events = await Event.find({
-      relations: { club: true },
+      relations: { club: true, artistEvents: { artist: true } },
     });
     res.status(200).json({
       success: true,
@@ -131,11 +131,11 @@ export const getEvents = async (req: Request, res: Response) => {
 export const getEventById = async (req: Request, res: Response) => {
   try {
     const eventId = req.params.id;
-    const event = await ArtistEvent.find({
+    const event = await Event.find({
       where: {
-        event: { id: parseInt(eventId) },
+        id: parseInt(eventId),
       },
-      relations: { artist: true, event: true },
+      relations: { artistEvents: { artist: true } },
     });
 
     if (!event) {
