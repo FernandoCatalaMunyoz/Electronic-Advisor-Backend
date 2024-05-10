@@ -11,6 +11,12 @@ export const createEvent = async (req: Request, res: Response) => {
     const day = req.body.day;
     const year = req.body.year;
     const clubId = req.body.clubId;
+    if (!name || !month || !day || !year || !clubId) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
     const newEvent = await Event.create({
       name: name,
       month: month,

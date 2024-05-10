@@ -8,6 +8,9 @@ import { faker } from "@faker-js/faker";
 import bcrypt from "bcrypt";
 import { Club } from "../../Models/Club";
 import { ArtistEvent } from "../../Models/Artist-Event";
+import { artistSeedDatabase } from "./artistsSeeder";
+import { eventSeedDatabase } from "./eventsSeeder";
+import { clubSeedDatabase } from "./clubsSeeder";
 
 const roleSeedDataBase = async () => {
   try {
@@ -107,67 +110,6 @@ const genresSeedDatabase = async () => {
   }
 };
 
-//Creacion artistas
-const artistSeedDatabase = async () => {
-  await AppDataSource.initialize();
-  try {
-    const generateFakeArtist = () => {
-      const artist = new Artist();
-      artist.name = faker.person.firstName();
-      artist.country = faker.location.country();
-      artist.genre = new Genre();
-      artist.genre.id = faker.number.int({ min: 1, max: 5 });
-      return artist;
-    };
-    const fakeArtist = Array.from({ length: 15 }, generateFakeArtist);
-    await Artist.save(fakeArtist);
-  } catch (error) {
-    console.log(error);
-  } finally {
-    await AppDataSource.destroy();
-  }
-};
-// Creacion clubs
-const clubSeedDatabase = async () => {
-  await AppDataSource.initialize();
-  try {
-    const generateFakeClub = () => {
-      const club = new Club();
-      club.name = faker.company.name();
-      club.address = faker.location.streetAddress();
-      club.link = faker.internet.url();
-      return club;
-    };
-    const fakeClub = Array.from({ length: 15 }, generateFakeClub);
-    await Club.save(fakeClub);
-  } catch (error) {
-    console.log(error);
-  } finally {
-    await AppDataSource.destroy();
-  }
-};
-//Creacion eventos
-
-const eventSeedDatabase = async () => {
-  await AppDataSource.initialize();
-  try {
-    const generateFakeEvent = () => {
-      const event = new Event();
-      event.name = faker.lorem.words();
-      event.month = faker.number.int({ min: 1, max: 12 });
-      event.day = faker.number.int({ min: 1, max: 28 });
-      event.year = faker.number.int({ min: 2024, max: 2025 });
-      event.club = new Club();
-      event.club.id = faker.number.int({ min: 1, max: 5 });
-      return event;
-    };
-    const fakeEvent = Array.from({ length: 15 }, generateFakeEvent);
-    await Event.save(fakeEvent);
-  } catch (error) {
-  } finally {
-    await AppDataSource.destroy();
-  }
-};
 //CREACION SEEDER ARTISTAS-EVENTOS
 const evetArtistSeedDatabase = async () => {
   await AppDataSource.initialize();
@@ -177,10 +119,13 @@ const evetArtistSeedDatabase = async () => {
       eventArtist.event = new Event();
       eventArtist.event.id = faker.number.int({ min: 6, max: 15 });
       eventArtist.artist = new Artist();
-      eventArtist.artist.id = faker.number.int({ min: 1, max: 15 });
+      eventArtist.artist.id = faker.number.int({ min: 1, max: 20 });
       return eventArtist;
     };
-    const fakeArtistEvent = Array.from({ length: 15 }, generateFakeEventArtist);
+    const fakeArtistEvent = Array.from(
+      { length: 200 },
+      generateFakeEventArtist
+    );
     await ArtistEvent.save(fakeArtistEvent);
   } catch (error) {
   } finally {
