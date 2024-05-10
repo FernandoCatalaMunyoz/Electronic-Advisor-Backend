@@ -81,6 +81,7 @@ export const artistSeedDatabase = async () => {
     artist11.country = "Belgium";
     artist11.genre = new Genre();
     artist11.genre.id = 2;
+    await artist11.save();
 
     const artist12 = new Artist();
     artist12.name = "Nina Kraviz";
@@ -108,6 +109,7 @@ export const artistSeedDatabase = async () => {
     artist15.country = "Germany";
     artist15.genre = new Genre();
     artist15.genre.id = 3;
+    await artist15.save();
 
     const artist16 = new Artist();
     artist16.name = "Fisher";
@@ -128,12 +130,14 @@ export const artistSeedDatabase = async () => {
     artist18.country = "Germany";
     artist18.genre = new Genre();
     artist18.genre.id = 2;
+    await artist18.save();
 
     const artist19 = new Artist();
     artist19.name = "Jamie Jones";
     artist19.country = "UK";
     artist19.genre = new Genre();
     artist19.genre.id = 5;
+    await artist19.save();
 
     const artist20 = new Artist();
     artist20.name = "Marco Bailey";

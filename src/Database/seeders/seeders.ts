@@ -111,13 +111,13 @@ const genresSeedDatabase = async () => {
 };
 
 //CREACION SEEDER ARTISTAS-EVENTOS
-const evetArtistSeedDatabase = async () => {
+const artistEventSeedDatabase = async () => {
   await AppDataSource.initialize();
   try {
     const generateFakeEventArtist = () => {
       const eventArtist = new ArtistEvent();
       eventArtist.event = new Event();
-      eventArtist.event.id = faker.number.int({ min: 6, max: 15 });
+      eventArtist.event.id = faker.number.int({ min: 1, max: 20 });
       eventArtist.artist = new Artist();
       eventArtist.artist.id = faker.number.int({ min: 1, max: 20 });
       return eventArtist;
@@ -133,12 +133,12 @@ const evetArtistSeedDatabase = async () => {
   }
 };
 const startSeeder = async () => {
-  await roleSeedDataBase();
-  await userSeedDatabase();
-  await genresSeedDatabase();
-  await artistSeedDatabase();
-  await clubSeedDatabase();
-  await eventSeedDatabase();
-  await evetArtistSeedDatabase();
+  // await roleSeedDataBase();
+  // await userSeedDatabase();
+  // await genresSeedDatabase();
+  // await artistSeedDatabase();
+  // await clubSeedDatabase();
+  // await eventSeedDatabase();
+  await artistEventSeedDatabase();
 };
 startSeeder();
