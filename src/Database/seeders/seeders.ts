@@ -133,12 +133,12 @@ const artistEventSeedDatabase = async () => {
   }
 };
 const startSeeder = async () => {
-  // await roleSeedDataBase();
-  // await userSeedDatabase();
-  // await genresSeedDatabase();
-  // await artistSeedDatabase();
-  // await clubSeedDatabase();
-  // await eventSeedDatabase();
+  await roleSeedDataBase();
+  await userSeedDatabase();
+  await genresSeedDatabase();
+  await artistSeedDatabase();
+  await clubSeedDatabase();
+  await eventSeedDatabase();
   await artistEventSeedDatabase();
 };
 startSeeder();

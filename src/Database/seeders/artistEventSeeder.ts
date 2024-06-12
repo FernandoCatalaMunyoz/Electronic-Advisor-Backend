@@ -12,6 +12,7 @@ export const artistEventSeedDatabase = async () => {
     artistEvent.artist.id = 1;
     artistEvent.event = new Event();
     artistEvent.event.id = 1;
+    console.log("artistEvent seed done");
   } catch (error) {
     console.log(error);
   } finally {

@@ -119,6 +119,7 @@ export const getEvents = async (req: Request, res: Response) => {
     const events = await Event.find({
       relations: { club: true, artistEvents: { artist: true } },
     });
+
     res.status(200).json({
       success: true,
       message: "Events retrieved successfully",
